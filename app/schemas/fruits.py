@@ -7,7 +7,7 @@ class FruitBase(BaseModel):
     name: str = None
     price: int = None
     description: str = None
-    Finish_Line_at: datetime
+    finish_line_at: datetime
     place: Optional[datetime]
     featured: bool = False
 
