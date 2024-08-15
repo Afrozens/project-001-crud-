@@ -15,7 +15,7 @@ class Fruit(Base):
     name = Column(String(150))
     description = Column(Text)
     price = Column(Integer)
-    Featured = Column(Boolean, default=False)
+    featured = Column(Boolean, default=False)
     finish_line_at = Column(DateTime)
     place = Column(String(150),nullable=True)
     

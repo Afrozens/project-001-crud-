@@ -21,5 +21,4 @@ class FruitInDbBase(FruitBase):
     id: UUID4
 
     created_at: datetime
-    deleted_at: Optional[datetime]
 

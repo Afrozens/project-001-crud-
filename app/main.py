@@ -8,8 +8,7 @@ from app.api.main import api_router
 settings = get_settings()
 
 def create_application():
-    application = FastAPI(title=settings.APP_NAME, version="0.0.1",
-    )
+    application = FastAPI(title=settings.APP_NAME, version="0.0.1")
 
     application.include_router(api_router)
     return application

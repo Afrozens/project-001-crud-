@@ -46,12 +46,6 @@ class Settings(BaseSettings):
     FIRST_ADMIN_ACCOUNT_NAME: str = os.environ.get('FIRST_ADMIN_ACCOUNT_NAME')
     FIRST_ADMIN_ACCOUNT_LASTNAME: str = os.environ.get('FIRST_ADMIN_ACCOUNT_LASTNAME')
 
-    # S3 BUCKET
-    BUCKET_REGION: str = os.environ.get('BUCKET_REGION')
-    BUCKET_NAME: str = os.environ.get('BUCKET_NAME')
-    BUCKET_KEY: str = os.environ.get('BUCKET_KEY')
-    BUCKET_SECRET: str = os.environ.get('BUCKET_SECRET')
-
 
 @lru_cache()
 def get_settings() -> Settings:

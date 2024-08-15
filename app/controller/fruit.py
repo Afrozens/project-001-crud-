@@ -25,8 +25,24 @@ class ControllerFruit(CRUDBase[Fruit, FruitCreate, FruitUpdate]):
           if len(fruits) < 1:
                 raise HTTPException(status_code=404, detail='Not Found Fruit')
           return fruits
+      
+        except Exception as error:
+            raise HTTPException(status_code=500, detail=f'Hay un error: {str(error)}')
+    
+    async def create_fruit(self, data: FruitCreate, session: Session):
+        try:
+            db_obj = Fruit(**data.model_dump(exclude_unset=True))
+            self.create(db=session, obj_in=db_obj)
+        except Exception as error:
+            raise HTTPException(status_code=500, detail=f'Hay un error: {str(error)}')
+
+    async def update_fruit(self, id: str, data: FruitUpdate, session: Session):
+        try: 
+            fruit_current = await self.get_fruit(id, session)     
+            self.update(db=session, db_obj=fruit_current, obj_in=data)
         except Exception as error:
             raise HTTPException(status_code=500, detail=f'Hay un error: {str(error)}')
 
 
-fruit = ControllerFruit(Fruit)
+fruit = ControllerFruit()
+fruit.model = Fruit

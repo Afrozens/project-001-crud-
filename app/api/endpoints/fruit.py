@@ -1,7 +1,8 @@
 from fastapi import APIRouter, status, Depends
 from sqlalchemy.orm import Session
+from fastapi.responses import JSONResponse
 
-from app.controller.fruit import fruit as fruit_controller
+from app.controller import fruit as fruit_controller
 from app.core.database import get_session
 from app.schemas.fruits import FruitCreate, FruitInDbBase, FruitUpdate
 
@@ -19,13 +20,14 @@ async def get_all_fruit(session: Session = Depends(get_session)):
 
 @router.post('/create', status_code=status.HTTP_201_CREATED)
 async def create_fruit(data: FruitCreate, session: Session = Depends(get_session)):
-    pass
+    await fruit_controller.create_fruit(data, session)
+    return JSONResponse({'message': 'Fruit Created Congratulations'})
 
 @router.put('/update/{id}', status_code=status.HTTP_200_OK)
 async def update_fruit(id: str, data: FruitUpdate, session: Session = Depends(get_session)):
     pass
     
-@router.delete('/delete/{id}', state_code=status.HTTP_200_OK)
+@router.delete('/delete/{id}', status_code=status.HTTP_200_OK)
 async def delete_fruit(id: str, session: Session = Depends(get_session)):
     pass
 
